@@ -25,6 +25,10 @@ public class ByteBufferReaderTest {
     ByteBufferReader reader = new UnsafeDirectByteBufferReader(buf);
     testData(reader);
     testPosition(reader);
+
+    reader = FastByteBuffers.createReader(buf);
+    testData(reader);
+    testPosition(reader);
   }
 
   @Test
@@ -32,6 +36,10 @@ public class ByteBufferReaderTest {
     ByteBuffer buf = ByteBuffer.allocate(dataSize);
     putData(buf);
     ByteBufferReader reader = new UnsafeHeapByteBufferReader(buf);
+    testData(reader);
+    testPosition(reader);
+
+    reader = FastByteBuffers.createReader(buf);
     testData(reader);
     testPosition(reader);
   }
